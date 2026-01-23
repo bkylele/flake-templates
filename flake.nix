@@ -4,7 +4,7 @@
   outputs = { ... }: {
     templates = {
         rust = {
-            path = "./rust";
+            path = ./rust;
             description = "A minimal Rust project";
         };
     };
