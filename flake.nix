@@ -3,8 +3,8 @@
 
   outputs = { ... }: {
     templates = {
-        test = {
-            path = ./test;
+        default = {
+            path = ./default;
             description = "A barebones flake for trying software";
         };
         rust = {
