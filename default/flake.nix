@@ -13,7 +13,7 @@
     {
       devShells = eachSystem (system: {
         default = pkgs.${system}.mkShell {
-          packages = with pkgs; [
+          packages = with pkgs.${system}; [
             # gcc
           ];
         };
