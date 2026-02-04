@@ -6,14 +6,17 @@
   outputs =
     { self, nixpkgs }:
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      inherit (nixpkgs) lib;
+      eachSystem = lib.genAttrs lib.systems.flakeExposed;
+      pkgs = eachSystem (system: import nixpkgs { inherit system; });
     in
     {
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          # gcc
-        ];
-      };
+      devShells = eachSystem (system: {
+        default = pkgs.${system}.mkShell {
+          packages = with pkgs; [
+            # gcc
+          ];
+        };
+      });
     };
 }
